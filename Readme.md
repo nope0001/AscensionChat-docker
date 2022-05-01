@@ -1,7 +1,7 @@
-WoWChat Docker
+AscensionChat Docker
 ==============
 
-WoWChat is a Discord integration chat bot for old versions of World of Warcraft.
+AscensionChat is a Discord integration chat bot for old versions of World of Warcraft.
 
 This repo builds a docker image to run [AscensionChat](https://github.com/Szyler/AscensionChat).
 
