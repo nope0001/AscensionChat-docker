@@ -12,6 +12,7 @@ The architectures supported by this image are:
 | Architecture |
 | :----: |
 | amd64 |
+| armv8 |
 | armv7 |
 | armv6 |
 
