@@ -23,15 +23,11 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USER_NAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      - name: set lower case repo name 
-        run: |
-          echo IMAGE_REPOSITORY=$(echo ${{ github.event.repository.name }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
-      
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ secrets.DOCKER_HUB_USER_NAME }}/${{ env.IMAGE_REPOSITORY }}
+          images: ${{ secrets.DOCKER_HUB_USER_NAME }}/${{ github.event.repository.name }}
           tags: test
       
       - name: Build and push Docker image
