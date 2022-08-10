@@ -43,3 +43,20 @@ $ docker run -d \
 
 ---
 Edit the https://github.com/Szyler/AscensionChat/blob/master/src/main/resources/wowchat.conf to your needs and copy it into your /path/to/config directory. Now restart or deploy the container to apply the config changes.
+
+---
+There is also a `next` tag available with support for memory limitation.
+### docker-compose 
+```
+---
+version: "2"
+
+services:
+  wowchat-next:
+    image: nope01/ascensionchat-docker:next
+    container_name: wowchat-next
+    volumes:
+      - path/to/config/wowchat.conf:/wowchat.conf
+    restart: unless-stopped
+    mem_limit: 250M
+```
