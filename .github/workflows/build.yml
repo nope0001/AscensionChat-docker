@@ -37,7 +37,8 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            GH_REPO_OWNER=Szyler,NAME_ZIP=Ascensionchat
+            GH_REPO_OWNER=Szyler
+            NAME_ZIP=Ascensionchat
 
   push__next_to_registry:
     name: Push Docker image to Docker Hub
@@ -72,4 +73,5 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            GH_REPO_OWNER=nope0001,NAME_ZIP=wowchat
+            GH_REPO_OWNER=nope0001
+            NAME_ZIP=wowchat
