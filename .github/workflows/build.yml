@@ -11,6 +11,9 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
 
+      - name: Set latest version env
+        run: echo "GITHUB_LATEST_VERSION=$(curl -s https://api.github.com/repos/Szyler/AscensionChat/releases/latest | jq -r ".tag_name")" >> $GITHUB_ENV
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       
@@ -25,7 +28,9 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ secrets.DOCKER_HUB_USER_NAME }}/${{ github.event.repository.name }}
-          tags: latest
+          tags: |
+            latest
+            ${{ env.GITHUB_LATEST_VERSION }}
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
@@ -38,14 +43,17 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             GH_REPO_OWNER=Szyler
-            NAME_ZIP=Ascensionchat
+            NAME_ZIP=wowchat
 
-  push__next_to_registry:
+  push_next_to_registry:
     name: Push next to Docker Hub
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
+
+      - name: Set latest version env
+        run: echo "GITHUB_LATEST_VERSION=$(curl -s https://api.github.com/repos/Szyler/AscensionChat/releases/latest | jq -r ".tag_name")" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -61,8 +69,10 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ secrets.DOCKER_HUB_USER_NAME }}/${{ github.event.repository.name }}
-          tags: next
-      
+          tags: |
+            next
+            next-${{ env.GITHUB_LATEST_VERSION }}
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
@@ -73,5 +83,5 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            GH_REPO_OWNER=nope0001
+            GH_REPO_OWNER=Szyler
             NAME_ZIP=wowchat
