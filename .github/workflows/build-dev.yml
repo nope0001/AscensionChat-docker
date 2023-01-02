@@ -31,7 +31,7 @@ jobs:
           images: ${{ secrets.DOCKER_HUB_USER_NAME }}/${{ github.event.repository.name }}
           tags: |
             dev
-            dev-$GITHUB_LATEST_VERSION
+            dev-${{ env.GITHUB_LATEST_VERSION }}
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
@@ -72,7 +72,7 @@ jobs:
           images: ${{ secrets.DOCKER_HUB_USER_NAME }}/${{ github.event.repository.name }}
           tags: |
             dev-next
-            dev-next-$GITHUB_LATEST_VERSION
+            dev-next-${{ env.GITHUB_LATEST_VERSION }}
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
