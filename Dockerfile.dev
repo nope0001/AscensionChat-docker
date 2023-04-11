@@ -19,7 +19,7 @@ RUN \
   mv wowchat/* ./ && \
   rm -R wowchat/ && \
   dos2unix run.sh && \
-  sed -i 's/-XX:+HeapDumpOnOutOfMemoryError/\$JAVA_OPTS -XX:+ExitOnOutOfMemoryError/' run.sh && \
+  sed -i 's/-XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -Dlogback.configurationFile=logback.xml/\$JAVA_OPTS /' run.sh && \
   apk del \
   dos2unix \
   curl \
