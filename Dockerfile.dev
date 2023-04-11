@@ -1,6 +1,7 @@
 FROM openjdk:8-jdk-alpine
 ARG GH_REPO_OWNER
 ARG NAME_ZIP
+ENV JAVA_OPTS=""
 RUN \
   echo "**** install build packages ****" && \
   apk add --no-cache \
@@ -24,7 +25,5 @@ RUN \
   curl \
   wget \
   unzip
-
-ENV JAVA_OPTS=""
 
 ENTRYPOINT ["bash","run.sh"]
